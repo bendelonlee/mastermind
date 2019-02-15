@@ -15,4 +15,15 @@ class MastermindCheckerTest < Minitest::Test
     refute mc.check('rbgi')
     assert_equal mc.corrections, ["(r)ed (b)lue (g)reen (y)ellow does not include (i)"]
   end
+  def test_it_has_wrong_length_in_corrections
+    mc = Mastermind::Checker.new('rbgyy')
+    refute mc.check('rbgy')
+    assert_equal mc.corrections, ["Guess was 4 characters. Guess should be 5 characters"]
+  end
+
+  def test_correct_positions
+    mc = Mastermind::Checker.new('rbgy')
+    refute mc.check('rbgg')
+    assert_equal mc.correct_positions, 3
+  end
 end
