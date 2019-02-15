@@ -26,4 +26,16 @@ class MastermindCheckerTest < Minitest::Test
     refute mc.check('rbgg')
     assert_equal mc.correct_positions, 3
   end
+
+  def test_correct_colors
+    mc = Mastermind::Checker.new('rbgy')
+    refute mc.check('rbyg')
+    assert_equal mc.correct_colors, 4
+  end
+
+  def test_hint
+    mc = Mastermind::Checker.new('rbgy')
+    refute mc.check('rbyg')
+    assert_equal mc.hint, ("'rbyg' has 4 of the correct elements with 2 in the correct positions")
+  end
 end

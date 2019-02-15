@@ -32,6 +32,17 @@ module  Mastermind
       end.count(true)
     end
 
+    def correct_colors
+      sorted_answer = @answer.chars.sort
+      @guess.chars.sort.map.with_index do |char, i|
+        sorted_answer[i] == char
+      end.count(true)
+    end
+
+    def hint
+        "'#{@guess}' has #{correct_colors} of the correct elements with #{correct_positions} in the correct positions"
+    end
+
 
   end
 end
